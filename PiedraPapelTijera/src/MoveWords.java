@@ -6,7 +6,7 @@ public class MoveWords{
     public static final int GANA = 1;
     public static final int PIERDE = 2;
 
-    private static final String[] validMoves = {"TIJERAS", "PAPEL", "PIEDRA"};
+    private static final String[] validMoves = {"TIJERAS", "PAPEL", "PIEDRA","LAGARTIJA","SPOCK"};
     private static final String[] validCommands = {"SALIR", "AYUDA"};
 
     private Random rnd;
@@ -66,8 +66,16 @@ public class MoveWords{
 	    second_i = getIndex(second);
 
 	    if (first_i == second_i) return EMPATE;
-	    
-	    return (( (first_i +1) % validMoves.length ) == second_i   ) ? GANA: PIERDE;
+	    /*Añado sentencia para que cada ID gane al siguiente y la tercera siguiente teniendo en cuenta 
+	     * que son en total 5 posiciones
+	     * ejemplo:
+	     * 0 gana a 1 y 3
+	     * 1 gana a 2 y 4
+	     * 2 gana a 3 y 0
+	     * 3 gana a 4 y 1
+	     * 4 gana a 0 y 2
+	     */
+	    return (( (first_i +1) % validMoves.length ) == second_i  || ( (first_i +3) % validMoves.length == second_i) ) ? GANA: PIERDE;
 	}
 	
 } 
